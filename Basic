@@ -1,0 +1,126 @@
+package com.poly.testcases.SampleTest
+
+import spock.lang.Specification
+import spock.lang.Unroll
+
+class Introduction extends Specification {
+
+    def "one plus one should equal two"(){
+        expect:
+
+        1 + 1 == 2
+    }
+
+    def "two plus two should equal four"(){
+        given:
+            int left = 2
+            int right = 2
+
+        when:
+            int result = left +right
+
+        then:
+            result == 4
+
+    }
+
+    def "Should be able to remove from list"(){
+        given:
+            def list = [1,2,3,4]
+
+        when:
+            list.remove(20)
+
+        then:
+            thrown(IndexOutOfBoundsException)
+            //list == [2,3,4]
+            list.size() == 4
+
+
+    }
+
+
+    def "number to the powers of two"(int a, int b, int c){
+        expect:
+            Math.pow(a,b) == c
+
+        where:
+            a | b | c
+            1 | 2 | 1
+            2 | 2 | 4
+            3 | 2 | 9
+            //4 | 2 | 15
+    }
+
+    def "should be empty after removing element"(){
+        given:
+            def list = [42]
+        when:
+            list.remove(0)
+
+        then:
+            notThrown(IllegalArgumentException)
+
+            doCommonAssertions(list)
+
+
+
+    }
+
+    def void doCommonAssertions(List<Integer> list){
+        assert list != null
+        assert list.isEmpty()
+
+
+
+    }
+
+    def "should compute the macimum of two numbers"()
+    {
+        expect:
+            Math.max(a, b) == c
+
+        where:
+            a | b | c
+            5 | 1 | 5
+            9 | 9 | 9
+    }
+
+    @Unroll
+    def "in feature: max of #a and #b should be #c"()
+    {
+        expect:
+        Math.max(a, b) == c
+
+        where:
+        a | b | c
+        5 | 1 | 5
+        9 | 9 | 9
+    }
+
+    @Unroll ('in unroll: max of #a and #b should #c')
+    def 'a b c'(){
+        expect:
+            Math.max(a, b) == c
+
+        where:
+            a | b | c
+            5 | 1 | 5
+            9 | 9 | 9
+    }
+
+    @Unroll('the sum is : #theSum')
+    def 'theSum test'(){
+     /*   expect:
+            Math.max(a, b) == c*/
+
+        where:
+            a | b | c
+            5 | 1 | 5
+            9 | 9 | 9
+
+        theSum = a + b + c
+    }
+
+
+}
