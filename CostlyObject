@@ -1,0 +1,13 @@
+package com.poly.testcases.SampleTest;
+
+public class VeryCostlyObject {
+    public void Verycostlyobject(){
+        System.out.println("Instantiating very hostly object..");
+        System.out.println("... 5minutes later;-");
+        System.out.println("Done!");
+    }
+
+
+
+
+}
